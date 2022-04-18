@@ -166,6 +166,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\ILogic.cs" />
+    <Compile Include="Logic\Logic.cs" />
     <Compile Include="Models\RectangleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,7 +1,7 @@
-﻿using Assignment.Models;
+﻿using SortApi.Models;
 using System.Collections.Generic;
 
-namespace Assignment.Business
+namespace SortApi.Business
 {
     public interface ILogic
     {

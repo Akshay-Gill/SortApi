@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace SortApi.Models
 {
-    public class RectangleModel
+    public class Rectangle
     {
-        public class Rectangle
-        {
-            public float Height { get; set; }
-            public float Width { get; set; }
-        }
-        public class Rectangles
-        {
-            public List<Rectangle> RectanglesList { get; set; }
-        }
+        [Required]
+        public double Length { get; set; }
+        [Required]
+        public double Width { get; set; }
+
     }
 }

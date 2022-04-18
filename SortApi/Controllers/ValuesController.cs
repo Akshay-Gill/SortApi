@@ -1,40 +1,44 @@
-﻿using System;
+﻿using SortApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using static SortApi.Models.RectangleModel;
+using SortApi.Models;
+using SortApi.Business;
 
 namespace SortApi.Controllers
 {
     public class ValuesController : ApiController
     {
+        private readonly ILogic _logic;
+
+        public ValuesController(ILogic logic)
+        {
+            _logic = logic;
+        }
+
         [HttpPost]
-        public HttpResponseMessage SortArea([FromBody] List<Rectangle> list)
+        public HttpResponseMessage SortArea([FromBody] List<Rectangle> list, string sortBy = "asc")
         {
             try
             {
-                foreach (Rectangle r in list)
+                if (!ModelState.IsValid || (sortBy != "asc" && sortBy != "desc"))
                 {
-                    if (r.Height < 0 || r.Width < 0)
-                    {
-                        var message1 = Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Rectangle sides cannot be negative");
-                        return message1;
-                    }
+                    var message1 = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Rectangle sides cannot be negative");
+                    return message1;
                 }
 
-
-                list.Sort((X, Y) => ((X.Height * X.Width).CompareTo(Y.Height * Y.Width)));
-                var message = Request.CreateResponse(HttpStatusCode.OK, list);
+                var sortedList = _logic.SortRectangle(list, sortBy);
+                var message = Request.CreateResponse(HttpStatusCode.OK, sortedList);
                 return message;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                var message = Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                var message = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
                 return message;
             }
-
 
         }
        
