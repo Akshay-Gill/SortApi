@@ -14,6 +14,12 @@ namespace SortApi.Controllers
     {
         private readonly ILogic _logic;
 
+        public ValuesController()
+        {
+            Logic logic = new Logic();
+            _logic = logic;
+        }
+
         public ValuesController(ILogic logic)
         {
             _logic = logic;

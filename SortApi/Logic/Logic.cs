@@ -4,7 +4,7 @@ using SortApi.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assignment.Business
+namespace SortApi.Business
 {
     public class Logic : ILogic
     {
