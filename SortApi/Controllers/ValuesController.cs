@@ -32,7 +32,7 @@ namespace SortApi.Controllers
             {
                 if (!ModelState.IsValid || (sortBy != "asc" && sortBy != "desc"))
                 {
-                    var message1 = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Rectangle sides cannot be negative");
+                    var message1 = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "There are some issues with your request");
                     return message1;
                 }
 
