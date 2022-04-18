@@ -50,8 +50,9 @@ namespace SortApi.UnitTests
             HttpResponseMessage Response = valuesController.SortArea(list);
 
             //Asset
-            Assert.IsTrue(Response.TryGetContentValue<List<Rectangle>>(out list));
-            Assert.AreEqual(expected_response,list);
+            List<Rectangle> list01 = new List<Rectangle>();
+            Assert.IsTrue(Response.TryGetContentValue<List<Rectangle>>(out list01));
+            Assert.AreEqual(expected_response,list01);
         }
 
         //[TestMethod]
