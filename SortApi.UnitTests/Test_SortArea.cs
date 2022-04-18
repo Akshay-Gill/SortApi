@@ -36,7 +36,7 @@ namespace SortApi.UnitTests
             };
 
             var result = controller.SortArea(rectangles, "abc");
-            Assert.IsInstanceOfType(result, typeof(BadRequestResult));
+            Assert.AreEqual(result.StatusCode.ToString(),"400");
 
         }
 
@@ -59,12 +59,11 @@ namespace SortApi.UnitTests
                     Width = 2
                 }
             };
-
-            logic.Setup(x => x.SortRectangle(rectangles, "asc")).Throws(new Exception());
+            logic.Setup(x => x.SortRectangle(rectangles, "asc")).Throws(new Exception("internal error"));
 
             var result = controller.SortArea(rectangles, "asc");
 
-            Assert.IsTrue(result.StatusCode.ToString() == "500");
+            Assert.AreEqual(result.StatusCode.ToString(),"500");
         }
 
         

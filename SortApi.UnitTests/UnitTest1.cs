@@ -38,8 +38,8 @@ namespace SortApi.UnitTests
             };
 
             var result = logic.SortRectangle(rectangles, "asc");
-            Assert.Equals(1, result[0].Length);
-            Assert.Equals(2, result[0].Width);
+            Assert.AreEqual(1, result[0].Length);
+            Assert.AreEqual(2, result[0].Width);
 
         }
         [TestMethod]
@@ -68,8 +68,8 @@ namespace SortApi.UnitTests
             };
 
             var result = logic.SortRectangle(rectangles, "desc");
-            Assert.Equals(10, result[0].Length);
-            Assert.Equals(10, result[0].Width);
+            Assert.AreEqual(10, result[0].Length);
+            Assert.AreEqual(10, result[0].Width);
 
         }
     }

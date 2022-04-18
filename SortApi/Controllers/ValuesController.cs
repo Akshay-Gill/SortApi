@@ -30,15 +30,16 @@ namespace SortApi.Controllers
         {
             try
             {
-                if (!ModelState.IsValid || (sortBy != "asc" && sortBy != "desc"))
+                    if (!ModelState.IsValid || (sortBy != "asc" && sortBy != "desc"))
                 {
                     var message1 = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "There are some issues with your request");
                     return message1;
+                }else
+                {
+                    var sortedList = _logic.SortRectangle(list, sortBy);
+                    var message = Request.CreateResponse(HttpStatusCode.OK, sortedList);
+                    return message;
                 }
-
-                var sortedList = _logic.SortRectangle(list, sortBy);
-                var message = Request.CreateResponse(HttpStatusCode.OK, sortedList);
-                return message;
             }
             catch (Exception ex)
             {
