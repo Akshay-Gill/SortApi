@@ -36,7 +36,7 @@ namespace SortApi.UnitTests
             };
 
             var result = controller.SortArea(rectangles, "abc");
-            Assert.AreEqual(result.StatusCode.ToString(),"400");
+            Assert.AreEqual(result.StatusCode.ToString(), "BadRequest");
 
         }
 
@@ -59,11 +59,11 @@ namespace SortApi.UnitTests
                     Width = 2
                 }
             };
-            logic.Setup(x => x.SortRectangle(rectangles, "asc")).Throws(new Exception("internal error"));
+            logic.Setup(x => x.SortRectangle(rectangles, "asc")).Throws(new Exception());
 
             var result = controller.SortArea(rectangles, "asc");
 
-            Assert.AreEqual(result.StatusCode.ToString(),"500");
+            Assert.AreEqual(result.StatusCode.ToString(), "InternalServerError");
         }
 
         

@@ -32,8 +32,9 @@ namespace SortApi.Controllers
             {
                     if (!ModelState.IsValid || (sortBy != "asc" && sortBy != "desc"))
                 {
-                    var message1 = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "There are some issues with your request");
-                    return message1;
+                    //var message1 = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "There are some issues with your request");
+                    HttpResponseMessage msg = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    return msg;
                 }else
                 {
                     var sortedList = _logic.SortRectangle(list, sortBy);
@@ -43,8 +44,9 @@ namespace SortApi.Controllers
             }
             catch (Exception ex)
             {
-                var message = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-                return message;
+                HttpResponseMessage msg = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                //var message = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+                return msg;
             }
 
         }
